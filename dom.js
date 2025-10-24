@@ -1,8 +1,11 @@
-function square(grid) {
-  const body = document.querySelector("body");
-  const div = document.querySelector(".container");
-  div.style.display = "flex";
-  div.style.width = "1000px";
+const body = document.querySelector("body");
+const div = document.querySelector(".container");
+div.style.display = "flex";
+div.style.width = "1000px";
+const button = document.querySelector("button");
+button.style.fontWeight = "600";
+button.style.width = "80px";
+function box(grid) {
   for (let i = 0; i < grid;i++) { 
     const square = document.createElement("div");
     square.style.display = "flex";
@@ -11,8 +14,8 @@ function square(grid) {
     for (let j = 0;j < grid; j++){
       const box = document.createElement("div");
       square.appendChild(box);
-      box.textContent = `${j}`;
       box.style.height = "56px";
+      box.style.flex = "1";
       box.style.width = "56px";
       box.style.border = "2px solid black";
       box.addEventListener("mouseenter", function(e) {
@@ -21,15 +24,17 @@ function square(grid) {
       box.addEventListener("mouseleave", function(e) {
         box.style.backgroundColor = "white";
       })
-  }
-  }
+    }
+      button.addEventListener("click",function() {
+          body.removeChild(square);
+      });
+    }
 }
-let grid = 16;
-square(grid);
-const button = document.querySelector("button");
-button.style.fontWeight = "600";
-button.style.width = "80px";
+box(16);
+let grid = 0;
 button.addEventListener("click",function() {
-  grid = prompt();
-  square(grid);
-})
+  grid = prompt("Maximum Limit Is 100" );
+  if (grid <= 100) {
+    box(grid);
+  }
+});  
